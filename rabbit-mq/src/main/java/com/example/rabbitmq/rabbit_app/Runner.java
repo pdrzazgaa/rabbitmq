@@ -1,7 +1,6 @@
 package com.example.rabbitmq.rabbit_app;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import com.example.rabbitmq.RabbitMqApplication;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -12,10 +11,7 @@ import org.springframework.stereotype.Component;
 public class Runner implements CommandLineRunner {
 
   private final RabbitTemplate rabbitTemplate;
-  private final Receiver receiver;
-
-  public Runner(Receiver receiver, RabbitTemplate rabbitTemplate) {
-    this.receiver = receiver;
+  public Runner(RabbitTemplate rabbitTemplate) {;
     this.rabbitTemplate = rabbitTemplate;
   }
 
@@ -24,7 +20,8 @@ public class Runner implements CommandLineRunner {
     Random random = new Random();
     int maxMilliseconds = 2500;
     int minMilliseconds = 1500;
-    String[] food = {ConsoleColors.RED_BOLD + "Kebab - Kuba 🥙", ConsoleColors.CYAN_BOLD + "Pizza - Kuba🍕", ConsoleColors.YELLOW_BOLD + "Pierogi - Kuba 🥟", ConsoleColors.BLUE_BOLD + "Sushi - Kuba🍱"};
+    String[] food = {ConsoleColors.RED_BOLD + "Kebab - Kuba 🥙", ConsoleColors.CYAN_BOLD + "Pizza - Kuba🍕",
+            ConsoleColors.YELLOW_BOLD + "Pierogi - Kuba 🥟", ConsoleColors.BLUE_BOLD + "Sushi - Kuba🍱"};
     int i = 1;
     while (i < 6) {
       System.out.println("🛵 Dostawca w drodze...");
@@ -35,5 +32,4 @@ public class Runner implements CommandLineRunner {
       i++;
     }
   }
-
 }

@@ -2,7 +2,6 @@ package com.example.rabbitmq.rabbit_app;
 
 import org.springframework.stereotype.Component;
 
-import java.io.Console;
 import java.util.concurrent.CountDownLatch;
 
 @Component

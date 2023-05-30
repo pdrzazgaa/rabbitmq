@@ -53,7 +53,7 @@ public class RabbitMqApplication {
 		return new MessageListenerAdapter(receiver, "receiveMessage");
 	}
 
-	public static void main(String[] args) throws InterruptedException, UnknownHostException {
+	public static void main(String[] args) throws UnknownHostException {
 		MyData.myInfo();
 		SpringApplication.run(RabbitMqApplication.class, args);
 	}
