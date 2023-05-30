@@ -21,13 +21,13 @@ public class Runner implements CommandLineRunner {
     Random random = new Random();
     int maxMilliseconds = 4000;
     int minMilliseconds = 1000;
-    String[] food = {ConsoleColors.RED_BOLD + "Kebab 🥙", ConsoleColors.CYAN_BOLD + "Pizza 🍕", ConsoleColors.YELLOW_BOLD + "Pierogi 🥟", ConsoleColors.BLUE_BOLD + "Sushi 🍱"};
-    int i = 0;
-    while (i < 5) {
+    String[] food = {ConsoleColors.RED_BOLD + "Kebab - Paula 🥙", ConsoleColors.CYAN_BOLD + "Pizza - Paula 🍕", ConsoleColors.YELLOW_BOLD + "Pierogi - Paula 🥟", ConsoleColors.BLUE_BOLD + "Sushi - Paula🍱"};
+    int i = 1;
+    while (i < 6) {
       System.out.println("🛵 Dostawca w drodze...");
       int randomMilliseconds = random.nextInt(maxMilliseconds - minMilliseconds + 1) + minMilliseconds;
         rabbitTemplate.convertAndSend(RabbitClientApplication.topicExchangeName,
-                "food", food[i%4] + ConsoleColors.RESET);
+                "food", i +". "+ food[i%4] + ConsoleColors.RESET);
       Thread.sleep(randomMilliseconds);
       i++;
     }

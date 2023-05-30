@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("localhost")
+    @Value("${spring.rabbitmq.host}")
     private String rabbitmqHost;
 
     @Value("${spring.rabbitmq.port}")
