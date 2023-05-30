@@ -1,35 +1,32 @@
-package com.example.rabbitmq.rabbit_app;
+package com.example.rabbitclient.client;
 
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
-import com.example.rabbitmq.RabbitMqApplication;
+import com.example.rabbitclient.RabbitClientApplication;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 @Component
 public class Runner implements CommandLineRunner {
 
   private final RabbitTemplate rabbitTemplate;
-  private final Receiver receiver;
 
-  public Runner(Receiver receiver, RabbitTemplate rabbitTemplate) {
-    this.receiver = receiver;
+  public Runner( RabbitTemplate rabbitTemplate) {
     this.rabbitTemplate = rabbitTemplate;
   }
 
   @Override
   public void run(String... args) throws Exception {
     Random random = new Random();
-    int maxMilliseconds = 2500;
-    int minMilliseconds = 1500;
+    int maxMilliseconds = 4000;
+    int minMilliseconds = 1000;
     String[] food = {ConsoleColors.RED_BOLD + "Kebab 🥙", ConsoleColors.CYAN_BOLD + "Pizza 🍕", ConsoleColors.YELLOW_BOLD + "Pierogi 🥟", ConsoleColors.BLUE_BOLD + "Sushi 🍱"};
     int i = 0;
     while (i < 5) {
       System.out.println("🛵 Dostawca w drodze...");
       int randomMilliseconds = random.nextInt(maxMilliseconds - minMilliseconds + 1) + minMilliseconds;
-        rabbitTemplate.convertAndSend(RabbitMqApplication.topicExchangeName,
+        rabbitTemplate.convertAndSend(RabbitClientApplication.topicExchangeName,
                 "food", food[i%4] + ConsoleColors.RESET);
       Thread.sleep(randomMilliseconds);
       i++;
